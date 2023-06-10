@@ -52,9 +52,12 @@ def start_process(path):
             print("---sort by---")
             print(keywords)
             keyword = input('type keyword:')
+            """
+            입력받은 키워드를 str_list와 함께 인자로 전달
+            str_list가 기존 객체 리스트를 삭제하고 sort_by_keyword 함수를 통해 반환된 새 객체리스트 주소를 새로 참조
+            """
             if keyword in keywords:
-                print("not implemented yet")
-                # fill this block
+                str_list = parking_spot_manager.sort_by_keyword(str_list, keyword)
             else: print("invalid input")
         elif select == 4:
             print("Exit")                       # Exit 출력하고 반복 종료 ( 프로그램 종료 )

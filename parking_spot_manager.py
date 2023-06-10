@@ -76,6 +76,13 @@ def filter_by_location(spots, locations):
                                         and locations[2] < i.get('longitude') and i.get('longitude') < locations[3]]
     return location_filtered_list
 
+"""
+인자로 받은 키워드를 객체의 딕셔너리의 키에 전달하고
+그것을 토대로 올림차순으로 정렬하고 새로운 리스트로 반환하는 함수
+"""
+def sort_by_keyword(spots, keyword):
+    return sorted(spots, key = lambda x:x.get(keyword))         # 딕셔너리 정렬 참고 https://bio-info.tistory.com/115
+
 
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)

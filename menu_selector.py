@@ -21,29 +21,30 @@ def start_process(path):
             print("[4] ptype")
             print("[5] location")
             select = int(input('type:'))
+            """
+            select에 입력값에 따른 각각의 경우에 불러오는 함수는 필터링 함수들은
+            사용자가 입력한 keyword가 str_list에 포함되어 있을 경우에만 str_list에 새로 저장
+            str_list는 참조를 잃고 새로운 객체 리스트를 참조하므로 기존의 객체 리스트는 삭제됨
+            """
             if select == 1:
                 keyword = input('type name:')
-                print("not implemented yet")
-                # fill this block
+                str_list = parking_spot_manager.filter_by_name(str_list, keyword)
             elif select == 2:
                 keyword = input('type city:')
-                print("not implemented yet")
-                # fill this block
+                str_list = parking_spot_manager.filter_by_city(str_list, keyword)
             elif select == 3:
                 keyword = input('type district:')
-                print("not implemented yet")
-                # fill this block
+                str_list = parking_spot_manager.filter_by_district(str_list, keyword)
             elif select == 4:
                 keyword = input('type ptype:')
-                print("not implemented yet")
-                # fill this block
+                str_list = parking_spot_manager.filter_by_ptype(str_list, keyword)
             elif select == 5:
                 min_lat = float(input('type min lat:'))
                 max_lat = float(input('type max lat:'))
                 min_lon = float(input('type min long:'))
                 max_lon = float(input('type max long:'))
-                print("not implemented yet")
-                # fill this block
+                locations = (min_lat, max_lat, min_lon, max_lon)                    # 최소,최대의 경도, 위도를 튜플에 저장
+                str_list = parking_spot_manager.filter_by_location(str_list, locations)    #범위 내의 위치한 객체들을 저장
             else:
                 print("invalid input")
         elif select == 3:
@@ -56,7 +57,7 @@ def start_process(path):
                 # fill this block
             else: print("invalid input")
         elif select == 4:
-            print("Exit")
+            print("Exit")                       # Exit 출력하고 반복 종료 ( 프로그램 종료 )
             break
         else:
             print("invalid input")

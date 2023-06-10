@@ -41,6 +41,43 @@ def print_spots(spots):
         print(str(spot))
 
 
+"""
+filter 함수들
+각각의 함수는 자원명, 시도, 시군구, 주차장 유형, 위치( 경도, 위도 )에 따라 필터링하는 함수
+각각의 함수는 매개변수로 객체 리스트와 각각 필요한 데이터를 받음
+객체 리스트의 길이만큼 리스트 함축으로 반복을 시행하는데, 인자로 받은 문자열이 해당하는 딕셔너리 value 값에
+포함이 된다면 각각 새로운 객체 리스트에 저장하고 반환한다.
+"""
+
+def filter_by_name(spots, name):
+    name_filtered_list = [i for i in spots if name in i.get('name')]
+    return name_filtered_list
+
+def filter_by_city(spots, city):
+    city_filtered_list = [i for i in spots if city in i.get('city')]
+    return city_filtered_list
+
+def filter_by_district(spots, district):
+    district_filtered_list = [i for i in spots if district in i.get('district')]
+    return district_filtered_list
+
+def filter_by_ptype(spots, ptype):
+    ptype_filtered_list = [i for i in spots if ptype in i.get('ptype')]
+    return ptype_filtered_list
+
+"""
+위치를 필터링 하는 함수.
+인자로 받은 spots 객체 리스트의 원소 중에서 locations 튜플의 인자로 받은 최소, 최대의 경도, 위도 범위 안에 위치하는
+객체들을 새로운 객체 리스트를 생성해서 반환
+"""
+def filter_by_location(spots, locations):
+    location_filtered_list = [i for i in spots \
+                              if locations[0] < i.get('latitude') and i.get('latitude') < locations[1] \
+                                        and locations[2] < i.get('longitude') and i.get('longitude') < locations[3]]
+    return location_filtered_list
+
+
+
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
     print("Testing the module...")
